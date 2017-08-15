@@ -5,7 +5,8 @@ import {
   Pano,
   Text,
   View,
-  StyleSheet
+  StyleSheet,
+  Box
 } from 'react-vr';
 
 class Row extends Component {
@@ -14,7 +15,7 @@ class Row extends Component {
      return (
      
     <View style = {[{ backgroundColor:this.props.color}, styles.row]} >
-     <Text style={styles.text}>{this.props.color}</Text>
+    
      </View>
       )
     }
@@ -28,9 +29,25 @@ export default class ReactVR extends Component {
     return (
       <View style= {styles.container}>
         <Pano source={asset('starry-sky.jpg')}/>
-        <Row color = 'red'/>
-         <Row color = 'blue'/>
-          <Row color = 'green'/>
+        <Box 
+    dimwidth={0.5}
+    dimHeight={0.5}
+    dimDepth= {0.5}
+    wireFrame={true}
+    style={{
+    color:'red',
+    transform:[
+    {translate:[0,0,-3]},
+    {translateY:1},
+    {translateX:-0.5},
+    {rotateY:45},
+    {rotateZ:45}
+
+    ]
+
+
+    }}
+    />
       </View>
     );
   }
