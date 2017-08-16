@@ -8,6 +8,19 @@ import {
   StyleSheet
 } from 'react-vr';
 
+const places = [
+ {title:'Island Paradise'
+   },
+   {
+    title:'Starry Night'
+   },
+   {
+    title:'Winter Outdoors'
+   },
+   {
+    title:'Light Show'
+   }
+]
 
 export default class ReactVR extends Component {
 
@@ -37,12 +50,41 @@ export default class ReactVR extends Component {
         </Text>
 
         </View>
+        {
+          this.state.showMenu ?
+          <View style={styles.menu}>
+          {
+            places.map((place, index) => {
+            return(
+              <View style={styles.menuItem} key={index}>
+              <Text style={styles.menuItemText}>{place.title} </Text>
+              </View>
+              )
+
+            })
+          }
+          </View>
+         :
+         <View></View>
+        }
       </View>
+
     );
   }
 };
 
 const styles = StyleSheet.create ({
+      menu:{
+      width:5,
+      height:1.25,
+      flexDirection:'row',
+      alignItems:'center',
+      justifyContent:'space-around',
+      transform:[
+        {translate:[-2,0,-7.5] }
+      ]
+      },
+
       menuButton: {
       backgroundColor:'#fff',
       borderRadius:0.25,
@@ -60,6 +102,21 @@ const styles = StyleSheet.create ({
       textAlign:'center',
       fontSize:0.20,
       color:'#000'
+      },
+      menuItem:{
+      alignItems:'center',
+      justifyContent:'center',
+      width:1,
+      height:1,
+      borderRadius:0.5,
+      borderWidth:0.02,
+      backgroundColor:'#fff'
+    },
+      menuItemText:{
+      textAlign:'center',
+      fontSize:0.20,
+      color:'#000'
+
       }
 
 
