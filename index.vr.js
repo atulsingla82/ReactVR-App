@@ -5,44 +5,65 @@ import {
   Pano,
   Text,
   View,
-  StyleSheet,
-  Box
+  StyleSheet
 } from 'react-vr';
 
 
-
 export default class ReactVR extends Component {
-  
 
-  constructor (){
+  constructor(){
+
     super();
-    this.state = {
 
-    fontSize:0.1
+    this.state = {
+      showMenu :false
+
     }
   }
+
+  toggleMenu(){
+
+    this.setState({showMenu: !this.state.showMenu})
+  }
+  
   render() {
-
-    
     return (
-      <View >
+      <View>
         <Pano source={asset('starry-sky.jpg')}/>
-        <Text
-        onEnter={()=> this.setState({fontSize:0.5})}
-        onExit= {()=> this.setState({fontSize:0.1})}
-      style ={{
-      fontSize:this.state.fontSize,
-      transform:[{translate:[0,0,-2]}]
-
-      }}>
-         HOVER OVER ME!!!
+         <View style= {styles.menuButton}
+         onEnter= {() => this.toggleMenu ()}>
+        <Text style={styles.menuButtonText}> 
+        {this.state.showMenu ? 'Close Menu' : 'Open Menu'}
         </Text>
+
+        </View>
       </View>
     );
   }
 };
 
+const styles = StyleSheet.create ({
+      menuButton: {
+      backgroundColor:'#fff',
+      borderRadius:0.25,
+       width:0.8,
+      height:0.5,
+      alignItems:'center',
 
+      justifyContent:'center',
+      borderWidth:0.01,
+      transform:[
+      {translate:[ -2, 0, -5]}
+      ]
+      },
+      menuButtonText:{
+      textAlign:'center',
+      fontSize:0.20,
+      color:'#000'
+      }
+
+
+})
 
 AppRegistry.registerComponent('ReactVR', () => ReactVR);
 
