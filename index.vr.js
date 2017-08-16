@@ -9,16 +9,21 @@ import {
 } from 'react-vr';
 
 const places = [
- {title:'Island Paradise'
+ {
+  title:'Island Paradise',
+  image:'island-garden.jpg'
    },
    {
-    title:'Starry Night'
+    title:'Starry Night',
+    image:'starry-sky.jpg'
    },
    {
-    title:'Winter Outdoors'
+    title:'Winter Outdoors',
+    image:'winter-outdoor.jpg'
    },
    {
-    title:'Light Show'
+    title:'Light Show',
+    image:'light-show.jpg'
    }
 ]
 
@@ -29,7 +34,8 @@ export default class ReactVR extends Component {
     super();
 
     this.state = {
-      showMenu :false
+      showMenu :false,
+      place :'starry-sky.jpg'
 
     }
   }
@@ -42,7 +48,7 @@ export default class ReactVR extends Component {
   render() {
     return (
       <View>
-        <Pano source={asset('starry-sky.jpg')}/>
+        <Pano source={asset(this.state.place)}/>
          <View style= {styles.menuButton}
          onEnter= {() => this.toggleMenu ()}>
         <Text style={styles.menuButtonText}> 
@@ -56,7 +62,9 @@ export default class ReactVR extends Component {
           {
             places.map((place, index) => {
             return(
-              <View style={styles.menuItem} key={index}>
+              <View style={styles.menuItem} 
+              key={index}
+              onEnter={() => this.setState({place:place.image})}>
               <Text style={styles.menuItemText}>{place.title} </Text>
               </View>
               )
