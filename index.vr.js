@@ -24,6 +24,10 @@ const places = [
    {
     title:'Light Show',
     image:'light-show.jpg'
+   },
+   {
+    title:'Taj Mahal',
+    image:'taj-mahal.jpg'
    }
 ]
 
